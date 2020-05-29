@@ -1,2 +1,0 @@
-# bannercreator
-Hello everyone, this is my second project. In my first first project i created a banner manually, and some friend said to me: you can do this by other way... Finally i found a python library called pyfiglet, i love this library at the moment. I used scrapping to get the fonts of the project and paste it into array. With scrapping i saw that this was too low for that i won't publish the other project. If you select a font which is not in the array, you won't be able to continue with your banner. Thank's for all. Have fun ;D 
