@@ -1,0 +1,54 @@
+"""
+	 __      __                             __     
+	/\ \  __/\ \                           /\ \    
+	\ \ \/\ \ \ \    ___   ____     ___    \_\ \   
+	 \ \ \ \ \ \ \  / __`\/\_ ,`\  / __`\  /'_` \  
+	  \ \ \_/ \_\ \/\ \L\ \/_/  /_/\ \L\ \/\ \L\ \ 
+	   \ `\___x___/\ \____/ /\____\ \____/\ \___,_\
+	    '\/__//__/  \/___/  \/____/\/___/  \/__,_ /
+	                                               
+	                                               
+	
+	- Bueno pues esto es una pequeña prueba de lo que podemos hacer con scrapping, normalmente se usa la libreria bs4 pero quise hacerlo con regex
+	- Consiste en buscar a que grupo pertenece cada fruta
+	- https://github.com/Dozom/
+"""
+import requests
+import sys
+import re
+from lxml import html
+from bs4 import BeautifulSoup
+import urllib.request
+url = "https://www.frutas-hortalizas.com/"
+page = urllib.request.urlopen(url)
+soup = BeautifulSoup(page, "html.parser")
+soup = str(soup)
+grupos = []
+fruticasg = []
+inicio = soup[re.search("nom_grup\">",soup).start()+10:]
+iniciog = inicio
+frutas = []
+posiciones = []
+while(re.search("(llista_fh)(.*?)(<a?)(.*?)(a>?)(.*?)(</div>)",iniciog) != None):
+	afounds = re.search("(llista_fh)(.*?)(<a?)(.*?)(a>?)(.*?)(</div>)",iniciog).start()
+	afounde = re.search("(llista_fh)(.*?)(<a?)(.*?)(a>?)(.*?)(</div>)",iniciog).end()
+	datos = iniciog[afounds:afounde]
+	iniciog = iniciog[afounde:]
+	daticos = re.search("(llista_fh)(.*?)(nom_grup)(.*?)(</li>)",datos).group()
+	daticos = daticos[re.search("(nom_grup\">)(.*?)(</li>)",daticos).start()+10:re.search("(nom_grup)(.*?)(</li>)",daticos).end()-5]
+	grupos.append(daticos)
+	fruticasg.append(daticos)
+	while(re.search("(.html\">)(.*?)(</a)",datos) != None):
+		fruticasg.append(datos[re.search("(.html\">)(.*?)(</a)",datos).start()+7:re.search("(.html\">)(.*?)(</a)",datos).end()-3])
+		datos = datos[re.search("(.html\">)(.*?)(</a)",datos).end():]
+print(grupos)
+print(fruticasg)
+for i in range(len(grupos)):
+	posiciones.append((fruticasg.index(grupos[i])))
+frutafind = input("Escribe la fruta que deseas buscar:\n")
+print(fruticasg.index(frutafind))
+for i in range(len(posiciones)):
+	if(fruticasg.index(frutafind) > posiciones[i]):
+		grupo = grupos[i]
+print("La fruta {0} pertenece a: {1}".format(frutafind,grupo))
+
