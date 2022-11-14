@@ -3,6 +3,7 @@ import hashlib
 iv = b"1234567890123456"  #16 bytes valor fix
 
 def generateKeys():
+    """ This function generate numbers from 0000 to 9999 and returns it into an array of strings """
     number = "0000"
     numbers = []
     for i in range(0,9999):
@@ -19,6 +20,9 @@ def generateKeys():
 
 # Array of possible passwords
 numberKeys = generateKeys()
+
+
+
 
 for key in numberKeys:
     # per cada password

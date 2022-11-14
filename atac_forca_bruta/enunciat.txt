@@ -1,0 +1,24 @@
+
+Anem a programar una aplicació que faci un atac per la força bruta a un text encriptat amb AES. Per a fer la pràctica simularem ser un haker que s'ha fet amb un arxiu de la empresa "Coca Cola" on hi ha la fórmula de la beguda. Sabem 2 coses: 1er, que a l'arxiu hi ha la paraula "coca cola" (no sabem si en majúscules, minúscules, etc), i 2on, que la contrasenya és un número de 4 dígits.
+
+Com generar el fitxer? Amb el programa de l'activitat anterior codifica un fitxer amb números, text, etc (d'una llargada superior a 30 caràcters) però que contingui la paraula "coca cola". El codi per a encriptar ha de ser un número de 4 xifres.
+
+Atenció: el programa ha de ser capaç de desencriptar qualsevol fitxer que segueixi aquestes característiques, no només el vostre!
+
+
+
+
+
+
+
+
+
+
+
+Dubtes:
+1. Com es fa un atac de força bruta en aes.
+
+Dades de les que disposem:
+1. Un arxiu que conté la paraula "coca cola" no sabem si en majúscules, minúscules, etc.
+2. la contrasenya és un numero de 4 digits.
+
