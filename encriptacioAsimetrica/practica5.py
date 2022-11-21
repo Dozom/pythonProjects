@@ -44,6 +44,35 @@ def demoTest():
     print("El text desxifrat és: ",textDesxifrat.decode())
 
 if __name__ == '__main__':
-    demoTest()
+    while True:
+        try:
+            option = int(input("""Introdueix una de les següents opcions per tal de fer servir el programa:
+                    0. Demo del programa. (Official working)
+                    1. Generar i escriure les claus a fitxers.
+                    2. Llegir les claus desde fitxers.
+                    3. Xifrar.
+                    4. Desxifrar.
+                  """))
+            if option == 0:
+                demoTest()
+            if option == 1:
+                #generate Keys
+                public_key, private_key = generateKeyPair()
+                #write Keys into files
+                writeFile("public_key.pem",public_key)
+                writeFile("private_key.pem",private_key)
+            if option == 2:
+                keysFromFiles()
+            if option == 3:
+                #cipheredText
+                textXifrat = cipher(puk, text)
+                print("El text xifrat és: ", textXifrat)
+            if option == 4:
+                #uncipheredText
+                textDesxifrat = uncipher(prk, textXifrat)
+                print("El text desxifrat és: ",textDesxifrat.decode())
+        except:
+            print("Hi ha hagut un error.")
+            break
 
 
