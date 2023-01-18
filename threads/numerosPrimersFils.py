@@ -1,13 +1,13 @@
 import threading
 import time
 
-totalNumerosPrimers = [] 
+totalNumerosPrimers = 0 
 
 def buscaNombresPrimers(numeroInici, numeroFinal):
     global totalNumerosPrimers
     for i in range(numeroInici, numeroFinal):
         if (esPrimer(i)):
-            totalNumerosPrimers.append(i)
+            totalNumerosPrimers += 1
             print(i)
 
 def esPrimer(num):
@@ -21,14 +21,13 @@ def esPrimer(num):
 final = int(input("Introdueix el numero final:"))
 
 start = time.time()
-fil1 = threading.Thread(target=buscaNombresPrimers, args=(1,final))
-fil2 = threading.Thread(target=buscaNombresPrimers, args=(1, final))
+# fil 1: de 1 a la meitat del nombre
+# fil 2: de la meitat fins al final
+fil1 = threading.Thread(target=buscaNombresPrimers, args=(1,final//2))
+fil2 = threading.Thread(target=buscaNombresPrimers, args=(final//2, final))
 fil1.start()
 fil2.start()
 fil1.join()
 fil2.join()
 end = time.time()
-print("Amb fils: ",end - start)
-
-
-            
+print("Amb fils: ",end - start," total de numeros primers: ",totalNumerosPrimers)

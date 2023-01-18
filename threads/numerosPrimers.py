@@ -1,13 +1,13 @@
 import threading
 import time
 
-totalNumerosPrimers = [] 
+totalNumerosPrimers = 0 
 
 def buscaNombresPrimers(numeroInici, numeroFinal):
     global totalNumerosPrimers
     for i in range(numeroInici, numeroFinal):
         if (esPrimer(i)):
-            totalNumerosPrimers.append(i)
+            totalNumerosPrimers += 1
             print(i)
 
 def esPrimer(num):
@@ -19,8 +19,7 @@ def esPrimer(num):
     return True
 
 final = int(input("Introdueix el numero final:"))
-
 start = time.time()
 buscaNombresPrimers(1,final)
 end = time.time()
-print("Sense fils: ",end - start)
+print("Sense fils: ",end - start," total numeros primers: ",totalNumerosPrimers)
